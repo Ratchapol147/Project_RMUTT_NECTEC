@@ -1,0 +1,52 @@
+  <!-- navigation bar -->
+  <style>
+    a{
+        color: rgb(24, 24, 24);
+    }
+    nav{
+    background-color:#2381df;
+    /* border: 1px solid #000000; */
+    }
+    .text{
+      color: white;
+    }
+    .text1{
+      color: grey;
+    }
+  </style>
+  
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand text" href="{% url 'home' %}">ระบบจำแนกประเภทผลสรุปความ</a>
+      <button class="navbar-toggler text" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text"></span>
+      </button>
+      <div class="collapse navbar-collapse text" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link  text" href="{% url 'process' %}">Process</a>
+          <li class="nav-item">
+            <a class="nav-link  text" href="{% url 'process_input' %}">Input Process</a>
+          <li class="nav-item">
+            <a class="nav-link  text" href="{% url 'api' %}">API Service</a>
+          </li>
+
+        </ul>
+        
+        <ul class="navbar-nav ">
+          {% if request.user.is_authenticated %}
+              
+              <a class="nav-link navbar text" href="{% url 'logout' %}" >Logout</a>
+              <a class="nav-link navbar text" href="{% url 'edit_profile' %}" >Edit Profile</a>
+              <a class="nav-link text" href="{% url 'change_password' %}" >Change Password</a>
+              <a class="nav-link navbar text">ยินดีต้อนรับ : {{ user.username|safe }}</a>
+          {% else %}
+              <a class="nav-link navbar text" href="{% url 'login' %}" >Login</a>
+              <!-- <a class="nav-link navbar text" href="{ url 'register' }">Register</a> -->
+          {% endif %}
+      </ul>
+      </div>
+    </div>
+    
+  </nav>
+    <!-- navigation bar end -->

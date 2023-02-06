@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %} 
+{% load static %}
+{% block title %}Process{% endblock %} 
+
+
+{% block content %}
+<style>
+  .display{
+    display: block;
+  }
+</style>
+{% autoescape off %}
+
+<div class="allmain">
+<main>
+    <section id="news">
+      <h2>Input ID</h2>
+      <form action="process">
+        <label for="search">Search resources:</label><br>
+        <div class="input-group flex-nowrap">
+          <input type="number" class="form-control"id="search" name="search" value="{{id}}" min="1"
+          max="3190" aria-describedby="addon-wrapping">
+          <input type="submit" value="Search" class="btn btn-outline-primary">
+        </div>
+      </form>
+    </section>
+
+  <section id="wordcount">
+    <h5>จำนวนคำที่เจอของข้อมูล</h5>
+    <p id="Found">{{int_wordFound_content_ext}} คำ</p>
+    <h5>จำนวนคำที่ไม่เจอของข้อมูล</h5>
+    <p id="not_Found">{{int_wordnotFound_ext}} คำ</p>
+    <div id="Hide1" >
+          <h5 class="my -3">คำที่ไม่เจอของข้อมูล Extractive</h5>
+          {% for text in wordnotFound_ext %}
+          <label id="text_nodFound_ext">{{text|safe}} ,</label>
+          {% endfor %}
+    </div>
+    <br><br>
+    <div id="Hide2" >
+          <h5 >คำที่ไม่เจอของข้อมูล Abstractive</h5>
+          {% for text in wordnotFound_abs %}
+          <label id="text_nodFound_ext" >{{text|safe}} ,</label>
+          {% endfor %}
+    </div>
+    
+    
+ 
+
+  </section>
+
+  <section >
+   
+    <h3>Abstractive</h3>
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+  </section>
+    <section >
+      <h3>Extractive</h3>
+      <div>
+        <canvas id="myChart1"></canvas>
+      </div>
+    </section>
+</main>
+</div>
+<main>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="background-color: rgb(59, 110, 221);  width: {{progress|safe}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >{{progress}}%</div>
+  </div>
+ 
+    <div id="myDIV" class="button">
+        <INPUT TYPE="button" NAME="type_text"  VALUE="Extractive" class="btn btn-outline-primary active"  onClick="setprice('{{text_extractive_def}}')
+                    ,number('จำนวนคำ :{{count_word_ext}}'),content('{{text_content_def}}'),Found('{{int_wordFound_content_ext}}'),not_Found('{{int_wordnotFound_ext}}'),content_text('Extractive Summary'),btnhide1()" >&nbsp;&nbsp;
+        <INPUT TYPE="button" NAME="type_text" VALUE="Abstractive" class="btn btn-outline-primary" onClick="setprice('{{text_abstractive_datafull}}')  
+                    ,number('จำนวนคำ :{{count_word_abs}}'),content('{{text_content_datafull_abs}}'),Found('{{int_wordFound_content_abs}}'),not_Found('{{int_wordnotFound_abs}}'),content_text('Abstractive Summary'),btnhide1()" >
+     </div>
+  </main>
+  
+<main>
+   <div class="boxleft">
+    <section id="boxinsideleft" class="boxinsideleft">
+      <h2>Originals Document</h2>&nbsp;&nbsp;<label>จำนวนคำ : <label>{{count_word_con}}</label></label>
+      <p id="content">{{ text_content_def}}</p>
+    </section>
+   </div>
+  
+
+    
+    <div class="boxright">
+      <section id="boxinsideright" class="boxinsideright">
+        <h2 id="content_text">Extractive Summary</h2>&nbsp;&nbsp;<label1 id="number">จำนวนคำ : {{count_word_ext}}</label1><br>
+        <p id="text">{{text_extractive_def}}</p>
+      </section>
+    </div>
+</main>
+
+{% include 'frontend/chart.html'%}
+
+
+{% endautoescape %}
+
+
+{% endblock content %}

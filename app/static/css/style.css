@@ -1,0 +1,128 @@
+
+.boxinsideleft{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: justify;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 850px;
+    height: 700px;
+    top: 30px;
+    background: #ffffff;
+    border-radius: 15px 50px;
+}
+
+.container{
+    width: auto;
+}
+
+.boxinsideright{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: justify;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 850px;
+    height: 700px;
+    top: 30px;
+    background: #ffffff;
+    border-radius: 15px 50px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #c5dfed;
+  }
+  /* rgb(167, 192, 205)rgb(180, 207, 222)rgb(180, 207, 222)rgb(188, 216, 232)rgb(188, 216, 232) */
+  header {
+    background-color: #0066cc;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  header nav li {
+    margin: 0 1rem;
+  }
+  
+  header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .boxleft{
+    margin-left: -220px;
+  }
+
+  main {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+  }
+
+  .allmain{
+    margin-left: -220px;
+    width: 1750px;
+  }
+
+  .button{
+    margin-right: -200px;
+  }
+  
+  section {
+    width: 30%;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .boxright{
+    margin-left: 20px;
+  }
+
+  .boxleft p{
+    padding-bottom: 118%;
+  }
+  
+  .boxright p{
+    padding-bottom: 118%;
+  }
+
+  section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .progress{
+      width: 50%;
+      margin: auto;
+  }
+  
+  footer {
+    background-color: #0066cc;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+  }
+  canvas{
+
+  width:10px;
+  height:6px ;
+
+}

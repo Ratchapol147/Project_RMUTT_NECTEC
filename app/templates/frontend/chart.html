@@ -1,0 +1,151 @@
+<script>
+
+
+
+  function setprice(setting) {
+        myOption = setting;
+        document.getElementById("text").innerHTML = myOption;
+  }
+  function content(setting) {
+        myOption = setting;
+        document.getElementById("content").innerHTML = myOption;
+  }
+  function number(setting) {
+        myOption = setting;
+        document.getElementById("number").innerHTML = myOption;
+  }
+  function Found(setting) {
+        myOption = setting;
+        document.getElementById("Found").innerHTML = myOption;
+        
+  }
+  function not_Found(setting) {
+        myOption = setting;
+        document.getElementById("not_Found").innerHTML = myOption;
+
+  }
+  function content_text(setting) {
+        myOption = setting;
+        document.getElementById("content_text").innerHTML = myOption;
+  }
+
+
+
+ 
+
+
+  var header = document.getElementById("myDIV");
+  var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+      });
+    };
+
+
+    //chart1_abs
+     // setup 
+     const data = {
+      labels: {{labels_abs|safe}},
+      datasets: [{
+        label: 'Data',
+        data: {{data_abs|safe}},
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+        ],
+        borderWidth: 1,
+        cutout:'80%',
+        circumference: 180,
+        rotation: 270,
+      }]
+    };
+    //hoverLabel plungin block
+    const labels2 = {{data_abs|safe}}
+    const hoverLabel ={
+        id:'hoverLabel',
+        afterDraw(chart,args,options){
+            const{ctx,chartArea:{left,right,top,bottom,width,height} } = chart;
+            ctx.save();
+
+            ctx.font = 'bolder 30px Arial';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center'
+            ctx.fillText(`${labels2} %`,width/2 ,height/1.2);
+        }
+    }
+    // config 
+    const config = {
+      type: 'doughnut',
+      data,
+      options: {
+        plugins:{
+          legend:{
+            display: false
+          },
+          
+        }
+      },
+
+      plugins:[hoverLabel]
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+
+
+    //chart1_ext
+    // setup 
+    // //hoverLabel plungin block
+    const labels1 = {{data_ext}}
+    const hoverLabel1 ={
+        id:'hoverLabel1',
+        afterDraw(chart,args,options){
+            const{ctx,chartArea:{left,right,top,bottom,width,height} } = chart;
+            ctx.save();
+
+            ctx.font = 'bolder 30px Arial';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center'
+            ctx.fillText(`${labels1} %`,width/2 ,height/1.2);
+        }
+    };
+    var ctx = document.getElementById("myChart1");
+    var myChart1 = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: {{labels_ext|safe}},
+        datasets: [{
+          label: 'Data',
+          data: {{data_ext|safe}},
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+          ],
+          borderWidth: 1,
+          cutout:'80%',
+          circumference:180,
+          rotation: 270,
+        }]
+      },
+      options: {
+        plugins:{
+          legend:{
+            display: false
+          },
+          
+        }
+      },
+      plugins:[hoverLabel1]
+    });
+  </script>

@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %} 
+{% block title %}Service{% endblock %} 
+{% block content %}
+
+<br><br><br>
+<table class="table table-borderless center .table-responsive">
+    <tbody>
+      <tr>
+        <th scope="row" class="table-active">Host</th>
+        <td >http://127.0.0.1:8000/api/test</td>
+        <td> </td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">Method</th>
+        <td>POST</td>
+   
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">Header</th>
+        <td colspan="2">application/json</td>
+      </tr>
+      <tr>
+        <th scope="row"class="table-active" >Parameter</th>
+        <td >
+            {
+            "data1":"ข้อมูลที่ต้องใส่",
+            "data2":"ข้อมูลที่ต้องใส่"
+            }
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>OUTPUT</h3>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+    <div style="background-color: rgb(197, 197, 197);">
+      <pre>
+        import sys
+  
+        import requests
+        
+        import json
+        
+        sys.stdin.reconfigure(encoding='utf-8')
+        
+        sys.stdout.reconfigure(encoding='utf-8')
+        
+        url = http://127.0.0.1:8000/api/test/
+        
+        payload = json.dumps({
+        
+        "data1": "{text1}"
+        
+        "data2": "{text1}"})
+        
+        headers = {
+        
+        'Content-Type': 'application/json'}
+        
+        response = requests.request("POST", url, headers=headers, data=payload)
+        
+        print(response.status_code)
+      </pre>
+    </div>
+    
+      
+    </div>
+  </div>
+
+  
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %} 
+{% load static %}
+{% block title %}Process Input{% endblock %} 
+
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-control">
+        <textarea name="data1" id="" cols="30" rows="10" placeholder="ใส่เนื้อหา">
+
+        </textarea>
+        <textarea name="data2" id="" cols="30" rows="10" placeholder="ใส่เนื้อหา">
+
+        </textarea>
+        
+        
+        <input type="submit" value="Sumbit" class="btn btn-info my-3">
+    </div>
+</form>
+
+
+
+
+{{response.text|safe}}
+
+
+
+{% include 'frontend/chart.html'%}
+
+
+
+
+
+{% endblock content %}
