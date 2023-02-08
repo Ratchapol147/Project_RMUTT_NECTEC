@@ -86,6 +86,7 @@ class ApiView(APIView):
         a ,b = repeat_word(sorted_data)
 
         hig1,hig2=fronhightliht(data1,data2,a)
+        
 
         
         request.data['similarity'] = cal_data
@@ -95,7 +96,7 @@ class ApiView(APIView):
         request.data['countworddata1'] = lendata1
         request.data['countworddata2'] = lendata2
         request.data['HTMLTag1'] = hig1
-        request.data['HTMLTag12'] = hig2
+        request.data['HTMLTag2'] = hig2
 
           
 

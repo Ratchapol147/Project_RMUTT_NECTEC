@@ -1,12 +1,13 @@
 {% extends 'base/base.html' %} 
-{% load static %}
 {% block title %}Process Input{% endblock %} 
 
 
 {% block content %}
+{% autoescape off %}
+<link rel="stylesheet" href="/static/css/style2.css">
 <form method="POST">
     {% csrf_token %}
-    <div class="form-control">
+    <div class="form-control my-3">
         <textarea name="data1" id="" cols="30" rows="10" placeholder="ใส่เนื้อหา">
 
         </textarea>
@@ -19,14 +20,33 @@
     </div>
 </form>
 
+<main>
+    <div class="boxleft">
+     <section id="boxinsideleft" class="boxinsideleft">
+       <h2>Originals Document</h2>&nbsp;&nbsp;<label>จำนวนคำ : <label>{{countworddata1|safe}}</label>
+       <p id="content">{{HTMLTag1}}</p>
+     </section>
+    </div>
+   
+ 
+     
+     <div class="boxright">
+       <section id="boxinsideright" class="boxinsideright">
+         <h2>Extractive Summary</h2>&nbsp;&nbsp;<label>จำนวนคำ : <label>{{countworddata2|safe}}</label>
+         <p id="text">{{HTMLTag2}}</p>
+       </section>
+     </div>
+ </main>
+
+
+ {{HTMLTag1|safe}}///////{{HTMLTag2|safe}}
 
 
 
-{{response.text|safe}}
-
-
-
+{% endautoescape %}
 {% include 'frontend/chart.html'%}
+
+
 
 
 

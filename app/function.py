@@ -110,7 +110,7 @@ def repeat_word(list):  #เช็คคำซ้ำ
 def hightlihtforapi(text1,text2):
     txtlist =[]
     i = 0
-    list = word_tokenize(text2, engine="newmm")
+    list = word_tokenize(text2, engine="newmm", keep_whitespace=True)
     # list = text2.split()keep_whitespace=False
     # list = text2
     ori_text=""

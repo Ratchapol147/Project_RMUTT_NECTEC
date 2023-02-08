@@ -99,35 +99,53 @@ def process(request):
         })
 
 def input_process(request):
-    # if request.method == 'POST':
-        # data1 = request.POST['data1']
-        # data2 = request.POST['data2']
+    if request.method == 'POST':
+        data1 = request.POST['data1']
+        data2 = request.POST['data2']
+        
+        if(request.method == 'POST'):
+            print(data1)
+            print(data2)
 
-        # print(data1)
-        # print(data2)
+
+            url = "http://127.0.0.1:8000/api/test/"
+
+            payload = json.dumps({
+            "data1": data1,
+            "data2": data2
+            })
+            headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic YWRtaW46b2htMTMxMTI1MjM='
+            }
+
+            response = requests.request("POST", url, headers=headers, data=payload)
+            response = response.json()
+            data = response['data']
 
 
-        url = "http://127.0.0.1:8000/api/test/"
+            similarity =data['similarity']
+            similarityWord =data['similarityWord']
+            Cutworddata1 =data['Cutworddata1']
+            Cutworddata2=data['Cutworddata2']
+            countworddata1= data['countworddata1']
+            countworddata2 =data['countworddata2']
+            HTMLTag1 =data['HTMLTag1']
+            HTMLTag2 =data['HTMLTag2']
+            
+            
 
-        payload = json.dumps({
-        "data1": "rdsกห",
-        "data2": "rกหฟ"
+        return render(request,'frontend/process_input.html',{
+            'similarity':similarity,
+            'similarityWord':similarityWord,
+            'Cutworddata1':Cutworddata1,
+            'Cutworddata2':Cutworddata2,
+            'countworddata1':countworddata1,
+            'countworddata2':countworddata2,
+            'HTMLTag1':HTMLTag1,
+            'HTMLTag2':HTMLTag2,
         })
-        headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic YWRtaW46b2htMTMxMTI1MjM='
-        }
-
-        response = requests.request("POST", url, headers=headers, data=payload)
-
-        response = response.json()
-        data = response['data']
-        
-        
-        # data_input = response['data']
-        # print(data_input['data1'])
-        # return redirect('/processinpput')
-    # else:
+    else:
         return render(request,'frontend/process_input.html')
 
 

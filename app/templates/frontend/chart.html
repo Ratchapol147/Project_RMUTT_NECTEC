@@ -47,10 +47,11 @@
 
     //chart1_abs
      // setup 
+     const labels = 'Data'
      const data = {
       labels: {{labels_abs|safe}},
       datasets: [{
-        label: 'Data',
+        label: labels,
         data: {{data_abs|safe}},
         backgroundColor: [
           'rgba(255, 26, 104, 0.2)',
