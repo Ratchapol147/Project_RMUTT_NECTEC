@@ -4,34 +4,56 @@
 
 {% block content %}
 {% autoescape off %}
-<link rel="stylesheet" href="/static/css/style2.css">
-<form method="POST">
+<link rel="stylesheet" href="/static/css/style2.css?v=1001">
+<div >
+  <form method="POST">
     {% csrf_token %}
-    <div class="form-control my-3">
-        <textarea name="data1" id="" cols="30" rows="10" placeholder="ใส่เนื้อหา">
+    <div class="div2 my-3">
+        <textarea placeholder="ใส่เนื้อหา" name="data1" class="textarealeft"></textarea>
+ 
 
-        </textarea>
-        <textarea name="data2" id="" cols="30" rows="10" placeholder="ใส่เนื้อหา">
-
-        </textarea>
-        
-        
-        <input type="submit" value="Sumbit" class="btn btn-info my-3">
+        <textarea placeholder="ใส่เนื้อหา" name="data2" class="textarearight"></textarea>
     </div>
-</form>
+  <button type="submit" class="btn btn-primary form-control">Submit</button>
+  </form>
+</div>
+
+<div class="allmain2">
+  <main>
+    <section id="wordcount">
+      <h5>จำนวนคำที่เจอของข้อมูล</h5>
+      <p id="Found">{{lenword}} คำ</p>
+    </section>
+    <section id="wordcount">
+      <h5>similarityWord</h5>
+      <label id="Found">{% for data in similarityWord  %}
+                      {{data}}, </label>
+                    {% endfor %}
+        
+        
+    </section>
+    <section id="wordcount">
+      <h5>จำนวนคำที่เจอของข้อมูล</h5>
+      <div style="height: 200%; height: 90%;">
+        <canvas id="myChart"></canvas>
+      </div>
+    </section>
+
+  </main>
+</div>
 
 <main>
-    <div class="boxleft">
-     <section id="boxinsideleft" class="boxinsideleft">
+    <div class="boxlefttwo">
+     <section id="boxinsidelefttwo" class="boxinsidelefttwo">
        <h2>Originals Document</h2>&nbsp;&nbsp;<label>จำนวนคำ : <label>{{countworddata1|safe}}</label>
-       <p id="content">{{HTMLTag1}}</p>
+       <p>{{HTMLTag1}}</p>
      </section>
     </div>
    
  
      
-     <div class="boxright">
-       <section id="boxinsideright" class="boxinsideright">
+     <div class="boxrighttwo">
+       <section id="boxinsiderighttwo" class="boxinsiderighttwo">
          <h2>Extractive Summary</h2>&nbsp;&nbsp;<label>จำนวนคำ : <label>{{countworddata2|safe}}</label>
          <p id="text">{{HTMLTag2}}</p>
        </section>
@@ -39,17 +61,51 @@
  </main>
 
 
- {{HTMLTag1|safe}}///////{{HTMLTag2|safe}}
-
 
 
 {% endautoescape %}
 {% include 'frontend/chart.html'%}
 
 
+<script>
+  label = {{similarity|safe}}
+  let n = label.toFixed(0);
+  const hoverLabel1 ={
+      id:'hoverLabel1',
+      afterDraw(chart,args,options){
+          const{ctx,chartArea:{left,right,top,bottom,width,height} } = chart;
+          ctx.save();
+          ctx.font = 'bolder 30px Arial';
+          ctx.fillStyle = 'black';
+          ctx.textAlign = 'center'
+          ctx.fillText(`${n} %`,width/2 ,height/1.2);
+        }
+    };
+  const ctx = document.getElementById('myChart');
 
-
-
-
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Red'],
+      datasets: [{
+        label: '# of Votes',
+        data: [label],
+        borderWidth: 1,
+        cutout:'90%',
+        circumference:180,
+        rotation: 270,
+      }]
+    },
+    options: {
+        plugins:{
+          legend:{
+            display: false
+          },
+          
+        }
+      },
+      plugins:[hoverLabel1]
+  });
+</script>
 
 {% endblock content %}

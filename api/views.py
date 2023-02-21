@@ -14,6 +14,7 @@ from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
 from  app.function import textword,countword,hightliht,delspace,repeat_word,hightlihtforapi,fronhightliht,calculate_word
 from pythainlp.tokenize import word_tokenize
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 
@@ -34,7 +35,6 @@ class datafullDetail(generics.RetrieveAPIView):
 class txtsumDetail(generics.RetrieveAPIView):
     queryset = txtsum.objects.all()
     serializer_class = txtsumSerializer
-
 
 #-------------------------------------------------  RetrieveUpdateDestroyAPIView
 
@@ -67,10 +67,7 @@ class ApiView(APIView):
 
         wordnotFound_data,int_wordFound_content_data,int_wordnotFound_data,cal_data = calculate_word(data1,data2)
 
-        print(wordnotFound_data)
-        print(int_wordFound_content_data)
-        print(int_wordnotFound_data)
-        print(cal_data)
+    
     
         b1=word_tokenize(data1,engine='newmm')
         b2=word_tokenize(data2,engine='newmm')
@@ -109,5 +106,107 @@ class ApiView(APIView):
            
             }
         )
+class ApiinDB(APIView):
+        """
+        API call in Database
+        """
+        def post(self,request):
+
+            # id =int(request.data['input'])
+            try: id = int(request.data['input'])
+            except MultiValueDictKeyError:
+             id = 1
+        
+            data_datafull = datafull.objects.get(id=id)
+            data_txtsim   = txtsum.objects.get(id=id)
+            text_content_datafull = data_datafull.news_content
+            text_abstractive_datafull = data_datafull.abstractive
+            text_extractive_datafull = data_datafull.extractive
+
+            text_content = data_txtsim.content
+            text_abstractive = data_txtsim.abstractive
+            text_extractive = data_txtsim.extractive
+
+    
+
+            
+            hightlihttext_ext = hightliht(text_content,text_extractive)
+            hightlihttext_abs = hightliht(text_content,text_abstractive)
+            
+            res_ext = delspace(hightlihttext_ext)
+            res_abs = delspace(hightlihttext_abs)
+
+            sorted_data_ext = (sorted(res_ext,key = len, reverse=True))
+            sorted_data_abs = (sorted(res_abs,key = len, reverse=True))
+
+
+            count_word_con =countword(text_content_datafull)
+            count_word_ext =countword(text_extractive_datafull)
+            count_word_abs =countword(text_abstractive_datafull)
+
+            wordnotFound_abs,int_wordFound_content_abs,int_wordnotFound_abs,cal_abs = calculate_word(text_content_datafull,text_abstractive_datafull) #abstractive
+            wordnotFound_ext,int_wordFound_content_ext,int_wordnotFound_ext,cal_ext = calculate_word(text_content_datafull,text_extractive_datafull) #extractive
+            
+            a_ext ,b_ext = repeat_word(sorted_data_ext) 
+            a_abs ,b_abs = repeat_word(sorted_data_abs) 
+            # a ลบตัวซ้ำในข้อมูล
+            # b ข้อมู,ที่ซ้ำในข้อมูล
+
+            progress1 = (id/3190)*100
+            progress = round(progress1)
+            
+            text_content_datafull_ext,text_extractive_datafull=fronhightliht(text_content_datafull,text_extractive_datafull,a_ext)
+            text_content_datafull_abs,text_abstractive_datafull=fronhightliht(text_content_datafull,text_abstractive_datafull,a_abs)
+        
+
+            new_data_abs = round(cal_abs)
+            new_data_ext = round(cal_ext)
+            
+            
+            labels_ext =["Extractive"]
+            labels_abs =["Abstractive"]
+            data_ext =[new_data_ext]
+            data_abs =[new_data_abs]
+
+            request.data['text_content_def'] = text_content_datafull_ext,
+            request.data['text_extractive_def'] = text_extractive_datafull,
+            #========
+            request.data['text_content_datafull_abs'] = text_content_datafull_abs,
+            request.data['text_abstractive_datafull'] = text_abstractive_datafull,
+            #===============================================
+            request.data['id'] = id,
+            request.data['progress'] = progress,
+            #========
+            request.data['wordnotFound_ext'] = wordnotFound_ext,
+            request.data['int_wordFound_content_ext'] = int_wordFound_content_ext,
+            request.data['int_wordnotFound_ext'] = int_wordnotFound_ext,
+            #========
+            request.data['wordnotFound_abs'] = wordnotFound_abs,
+            request.data['int_wordFound_content_abs'] = int_wordFound_content_abs,
+            request.data['int_wordnotFound_abs'] = int_wordnotFound_abs,
+            #========
+            request.data['count_word_con'] = count_word_con,
+            #========
+            request.data['count_word_ext'] = count_word_ext,
+            #========
+            request.data['count_word_abs'] = count_word_abs,
+            #========
+            request.data['labels_ext'] = labels_ext,
+            request.data['labels_abs'] = labels_abs,
+            request.data['data_ext'] = data_ext,
+            request.data['data_abs'] = data_abs,
+
+            return Response(
+            {
+            'status': status.HTTP_200_OK,
+            'data': request.data
+             }
+        )
+
+        
+            
+           
+            
+        
 
     
