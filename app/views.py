@@ -100,12 +100,11 @@ def process(request):
 
 def input_process(request):
     if request.method == 'POST':
-        data1 = request.POST['data1']
-        data2 = request.POST['data2']
+      
         
         if(request.method == 'POST'):
-            print(data1)
-            print(data2)
+            data1 = request.POST['data1']
+            data2 = request.POST['data2']
 
 
             url = "http://127.0.0.1:8000/api/test/"
@@ -123,6 +122,13 @@ def input_process(request):
             response = response.json()
             data = response['data']
 
+            # similarity = เปอร์เช็นความเหมือน 
+            # similarityWord = คำที่เหมือนกัน
+            # Cutworddata1 = การตัดคำ
+            # Cutworddata2 = การตัดคำ
+            # HTMLTag1 = ส่วนแสดง Tag HTML:5
+            # countworddata2 = แสดงจำนวนคำ
+            
 
             similarity =data['similarity']
             similarityWord =data['similarityWord']
@@ -132,11 +138,12 @@ def input_process(request):
             countworddata2 =data['countworddata2']
             HTMLTag1 =data['HTMLTag1']
             HTMLTag2 =data['HTMLTag2']
-            
-            
-
+            lenword = (len(similarityWord))
+  
+         
         return render(request,'frontend/process_input.html',{
             'similarity':similarity,
+            'lenword':lenword,
             'similarityWord':similarityWord,
             'Cutworddata1':Cutworddata1,
             'Cutworddata2':Cutworddata2,

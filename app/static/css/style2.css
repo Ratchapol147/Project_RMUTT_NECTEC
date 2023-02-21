@@ -1,30 +1,76 @@
-/* .boxinsideleft{
+textarea{
+  width: 835px;
+  height: 250px;
+  padding: 12px 30px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  /* border-radius: 15px 50px; */
+  background-color: #ffffff;
+  font-size: 16px;
+  resize: none;
+}
+
+/* .textareatopleft{
+  padding-top: 30px;
+  margin-left: -200px;
+  
+}*/
+
+.textarealeft{
+  margin-left: -200px;
+}
+
+.textarearight{
+  margin-left: 650px;
+  margin-top: -248px;
+}
+
+
+.textareatopright{
+  top: 300px;
+  margin-left: 670px;
+} */
+
+.div2 {
+
+  /* padding-top: 30px;
+  margin-left: -200px; */
+  display: flex;
+  justify-content: space-between;
+}
+.div2 textarea{
+
+  /* padding-top: 30px;
+  margin-left: -200px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.boxinsidelefttwo{
     display: flex;
     flex-wrap: wrap;
     text-align: justify;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: auto;
     width: 850px;
-    height: 700px;
+    height: 500px;
     top: 30px;
     background: #ffffff;
     border-radius: 15px 50px;
 }
 
-.boxinsideright{
+.boxinsiderighttwo{
     display: flex;
     flex-wrap: wrap;
     text-align: justify;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: auto;
     width: 850px;
-    height: 700px;
+    height: 500px;
     top: 30px;
     background: #ffffff;
     border-radius: 15px 50px;
 }
 
-.boxleft{
+.boxlefttwo{
     margin-left: -220px;
   }
 
@@ -41,14 +87,54 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  .boxright{
+  .boxrighttwo{
     margin-left: 20px;
   }
 
-  .boxleft p{
+  .boxlefttwo p{
     padding-bottom: 118%;
   }
   
-  .boxright p{
+  .boxrighttwo p{
     padding-bottom: 118%;
-  } */
+  }
+
+  main{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+  }
+
+  .allmain2{
+    margin-left: -220px;
+    width: 1750px;
+  }
+
+  section {
+    width: 48%;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .canvas2{
+    width:10px;
+    height:6px ;
+  }
+
+  footer {
+    background-color: #0066cc;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .footer{
+    padding-block-end:40px;
+    position: relative;
+  }
+  #chart-wrapper {
+    display: inline-block;
+    position: fixed;
+    width: 1%;
+  }
