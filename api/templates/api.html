@@ -1,7 +1,12 @@
 {% extends 'base/base.html' %} 
 {% block title %}Service{% endblock %} 
 {% block content %}
-
+<style>
+  mark {
+  background-color: yellow;
+  color: black;
+}
+</style>
 <br><br><br>
 <table class="table table-borderless center .table-responsive">
     <tbody>
@@ -51,11 +56,12 @@
         
         url = http://127.0.0.1:8000/api/test/
         
-        payload = json.dumps({
-        
-        "data1": "{text1}"
-        
-        "data2": "{text1}"})
+        payload = json.dumps(  
+          <mark color="red">{</mark>
+          <mark> "data1":"ข้อมูลที่ต้องใส่",</mark>
+           <mark>"data2":"ข้อมูลที่ต้องใส่"</mark>
+          <mark>}</mark>
+        )
         
         headers = {
         
