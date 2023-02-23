@@ -150,10 +150,14 @@ def fronhightliht(texta,textb,cut):
     # textb = extractive or  abstractive
     # cut = ข้อความใช้Hight
     colors = ['red' , 'blue']
-    for i in cut:
-        
+    countline =0
+    for i in  cut :
+        countline +=1
+        if countline %2:
             texta = texta.replace(i ,'<font color='+colors[1]+'>'+i+'</font>')
+            textb = textb.replace(i ,'<font color='+colors[1]+'>'+i+'</font>')
+        else:
+            texta = texta.replace(i ,'<font color='+colors[0]+'>'+i+'</font>')
             textb = textb.replace(i ,'<font color='+colors[0]+'>'+i+'</font>')
 
     return texta,textb
-
