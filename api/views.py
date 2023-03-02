@@ -32,9 +32,11 @@ class txtsumlList(generics.ListAPIView):
 class datafullDetail(generics.RetrieveAPIView):
     queryset = datafull.objects.all()
     serializer_class = datafullSerializer
+    permission_classes = [permissions.IsAuthenticated]
 class txtsumDetail(generics.RetrieveAPIView):
     queryset = txtsum.objects.all()
     serializer_class = txtsumSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 #-------------------------------------------------  RetrieveUpdateDestroyAPIView
 
@@ -198,7 +200,6 @@ class ApiinDB(APIView):
 
             return Response(
             {
-            'status': status.HTTP_200_OK,
             'data': request.data
              }
         )
