@@ -117,7 +117,7 @@ class ApiinDB(APIView):
             # id =int(request.data['input'])
             try: id = int(request.data['input'])
             except MultiValueDictKeyError:
-             id = 1
+                id = 1
         
             data_datafull = datafull.objects.get(id=id)
             data_txtsim   = txtsum.objects.get(id=id)
