@@ -84,7 +84,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mainProject.wsgi.application'
-
+#project_nectec
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -94,9 +94,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'database_nectec_nlp',
         'USER': 'root',
-        'PASSWORD': 'ohm13112523',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'root',
+        'HOST': 'db',
         'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'database_nectec_nlp',
+        # 'USER': 'root',
+        # 'PASSWORD': 'ohm13112523',
+        # 'HOST': 'db',
+        # 'PORT': '3306',
     }
 }
 
