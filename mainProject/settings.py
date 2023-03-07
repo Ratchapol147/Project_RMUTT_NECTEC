@@ -92,15 +92,15 @@ WSGI_APPLICATION = 'mainProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'database_nectec_nlp',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'db',
-        'PORT': '3306',
+        'NAME': '*',
+        'USER': '*',
+        'PASSWORD': '*',
+        'HOST': '*',
+        'PORT': '*',
         # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'database_nectec_nlp',
-        # 'USER': 'root',
-        # 'PASSWORD': 'ohm13112523',
+        # 'NAME': '*',
+        # 'USER': '*',
+        # 'PASSWORD': '*',
         # 'HOST': 'db',
         # 'PORT': '3306',
     }
