@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from database.models import datafull,txtsum
-from .function import textword,countword,hightliht,delspace,repeat_word,calculate_word,fronhightliht
+from .function import textword,countword,highlight,delspace,repeat_word,calculate_word,fronhightliht
 from django.utils.datastructures import MultiValueDictKeyError
 from pythainlp.tokenize import word_tokenize
 import requests
@@ -30,8 +30,8 @@ def process(request):
   
 
         
-        hightlihttext_ext = hightliht(text_content,text_extractive)
-        hightlihttext_abs = hightliht(text_content,text_abstractive)
+        hightlihttext_ext = highlight(text_content,text_extractive)
+        hightlihttext_abs = highlight(text_content,text_abstractive)
         
         res_ext = delspace(hightlihttext_ext)
         res_abs = delspace(hightlihttext_abs)

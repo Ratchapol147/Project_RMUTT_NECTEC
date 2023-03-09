@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import JSONParser
-from  app.function import textword,countword,hightliht,delspace,repeat_word,hightlihtforapi,fronhightliht,calculate_word
+from  app.function import textword,countword,highlight,delspace,repeat_word,highlightapi,fonthighlight,calculate_word
 from pythainlp.tokenize import word_tokenize
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -78,13 +78,13 @@ class ApiView(APIView):
         lendata2 = len(b2)
 
 
-        testsum = hightlihtforapi(data1,data2)
+        testsum = highlightapi(data1,data2)
 
         res = delspace(testsum)
         sorted_data = (sorted(res,key = len, reverse=True))
         a ,b = repeat_word(sorted_data)
 
-        hig1,hig2=fronhightliht(data1,data2,a)
+        hig1,hig2=fonthighlight(data1,data2,a)
         
 
         
@@ -132,8 +132,8 @@ class ApiinDB(APIView):
     
 
             
-            hightlihttext_ext = hightliht(text_content,text_extractive)
-            hightlihttext_abs = hightliht(text_content,text_abstractive)
+            hightlihttext_ext = highlight(text_content,text_extractive)
+            hightlihttext_abs = highlight(text_content,text_abstractive)
             
             res_ext = delspace(hightlihttext_ext)
             res_abs = delspace(hightlihttext_abs)
@@ -157,8 +157,8 @@ class ApiinDB(APIView):
             progress1 = (id/3190)*100
             progress = round(progress1)
             
-            text_content_datafull_ext,text_extractive_datafull=fronhightliht(text_content_datafull,text_extractive_datafull,a_ext)
-            text_content_datafull_abs,text_abstractive_datafull=fronhightliht(text_content_datafull,text_abstractive_datafull,a_abs)
+            text_content_datafull_ext,text_extractive_datafull=fonthighlight(text_content_datafull,text_extractive_datafull,a_ext)
+            text_content_datafull_abs,text_abstractive_datafull=fonthighlight(text_content_datafull,text_abstractive_datafull,a_abs)
         
 
             new_data_abs = round(cal_abs)

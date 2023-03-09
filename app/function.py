@@ -46,7 +46,7 @@ def calculate_word(text,test2):
 
     return wordnotFound,int_wordFound_content,int_wordnotFound,cal
 
-def hightliht(text1,text2):
+def highlight(text1,text2):
     txtlist =[]
     i = 0
     # list = word_tokenize(text2, engine="newmm", keep_whitespace=False)
@@ -108,7 +108,7 @@ def repeat_word(list):  #เช็คคำซ้ำ
     
     return v ,d 
 
-def hightlihtforapi(text1,text2):
+def highlightapi(text1,text2):
     txtlist =[]
     i = 0
     ######ทดสอบ
@@ -163,7 +163,7 @@ def hightlihtforapi(text1,text2):
     return txtlist  
 
 
-def fronhightliht(texta,textb,cut):
+def fonthighlight(texta,textb,cut):
     # texta = content
     # textb = extractive or  abstractive
     # cut = ข้อความใช้Hight
